@@ -1,4 +1,4 @@
-const dbConfig = require('../../data/dbConfig')
+const db = require('../../data/dbConfig')
 const School = require('./schools-model')
 
 test('it is the correct environment for the tests', () => {
@@ -6,14 +6,25 @@ test('it is the correct environment for the tests', () => {
 })
 
 beforeAll(async () => {
-  await dbConfig.migrate.rollback()
-  await dbConfig.migrate.migrate()
+  await db.migrate.rollback()
+  await db.migrate.latest()
+})
+
+beforeEach(async () => {
+  await db.seed.run()
+})
+
+afterAll(async () => {
+  await db.destroy()
 })
 
 describe('School db access functions', () => {
+  let schools
+  beforeEach(async () => {
+      schools = await School.get()
+  })
 
   describe('School.get', () => {
-
     it('resolves to all schools in the schools table', async () => {
       const schools = await School.get()
       expect(schools.length).toBe(3)
@@ -23,9 +34,5 @@ describe('School db access functions', () => {
       const schools = await School.get()
       expect(schools.length).toBe(3)
     })
-
   })
-  
 })
-
-
