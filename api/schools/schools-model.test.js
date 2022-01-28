@@ -26,13 +26,41 @@ describe('School db access functions', () => {
 
   describe('School.get', () => {
     it('resolves to all schools in the schools table', async () => {
-      const schools = await School.get()
       expect(schools.length).toBe(3)
     })
 
-    it('resolves to all schools in the schools table', async () => {
-      const schools = await School.get()
-      expect(schools.length).toBe(3)
+    it('resolves to the correct school shapes', async () => {
+      expect(schools[0]).toMatchObject({ school_id: 1, name: 'Freja' })
+      expect(schools[1]).toMatchObject({ school_id: 2, name: 'Blue' })
+      expect(schools[2]).toMatchObject({ school_id: 3, name: 'Anansi' })
     })
   })
+
+  describe('School.getById', () => {
+    let school
+    let num = 0
+    beforeEach(async () => {
+        school = await School.getById(++num)
+    })
+
+    it('resolves the school with the given id', async () => {
+      expect(school).toMatchObject({ school_id: 1, name: 'Freja' })
+    })
+
+    it('resolves to the correct school shapes', async () => {
+      expect(school).toMatchObject({ school_id: 2, name: 'Blue' })
+    })
+  })
+
+//   describe('School.insert', () => {
+//     it('resolves to all schools in the schools table', async () => {
+//       expect(school).toMatchObject({ school_id: 1, name: 'Freja' })
+//     })
+
+//     it('resolves to the correct school shapes', async () => {
+//       expect(schools[0]).toMatchObject({ school_id: 1, name: 'Freja' })
+//       expect(schools[1]).toMatchObject({ school_id: 2, name: 'Blue' })
+//       expect(schools[2]).toMatchObject({ school_id: 3, name: 'Anansi' })
+//     })
+//   })
 })
