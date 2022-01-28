@@ -14,7 +14,6 @@ module.exports = {
   // cacheDirectory: "C:\\Users\\13605\\AppData\\Local\\Temp\\jest",
 
   // Automatically clear mock calls, instances and results before every test
-  clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: false,
@@ -32,6 +31,7 @@ module.exports = {
 
   // Indicates which provider should be used to instrument code for coverage
   // coverageProvider: "babel",
+  coverageProvider: "v8",
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -120,7 +120,9 @@ module.exports = {
   // roots: [
   //   "<rootDir>"
   // ],
-
+  roots: [
+      "./api"
+    ],
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
 

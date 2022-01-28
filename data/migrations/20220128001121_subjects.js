@@ -6,6 +6,15 @@ exports.up = function (knex) {
         .string('name')
         .notNullable()
         .unique()
+
+      subjects
+        .integer('school_id')
+        .unsigned()
+        .notNullable()
+        .references('school_id')
+        .inTable('schools')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
     })
 }
 
