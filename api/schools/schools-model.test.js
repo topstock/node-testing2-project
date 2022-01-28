@@ -52,15 +52,14 @@ describe('School db access functions', () => {
     })
   })
 
-//   describe('School.insert', () => {
-//     it('resolves to all schools in the schools table', async () => {
-//       expect(school).toMatchObject({ school_id: 1, name: 'Freja' })
-//     })
+  describe('School.insert', () => {
+    let newSchool = { name: 'Red' }
+    beforeEach(async () => {
+        newSchool = await School.insert(newSchool)
+    })
 
-//     it('resolves to the correct school shapes', async () => {
-//       expect(schools[0]).toMatchObject({ school_id: 1, name: 'Freja' })
-//       expect(schools[1]).toMatchObject({ school_id: 2, name: 'Blue' })
-//       expect(schools[2]).toMatchObject({ school_id: 3, name: 'Anansi' })
-//     })
-//   })
+    it('resolves to newly added school', async () => {
+      expect(newSchool).toMatchObject({ school_id: 4, name: 'Red' })
+    })
+  })
 })

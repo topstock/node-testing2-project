@@ -28,7 +28,7 @@ router.post('/', validateSchool, async (req, res) => {
   // RETURN THE NEWLY CREATED School OBJECT
   // this needs a middleware to check that the request body is valid
   const newSchool = await Schools.insert(req.body)
-  res.status(200).json(newSchool)
+  res.status(201).json(newSchool)
 })
 
 router.put('/:id', validateSchoolId, validateSchool, async (req, res) => {
